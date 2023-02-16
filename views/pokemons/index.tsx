@@ -3,8 +3,9 @@ import Card from '../../components/card/Card';
 import Header from '../../components/header/Header';
 import Modal from '../../components/modal/Modal';
 import { Pokemon } from '../../interfaces/pokemon';
-import { Title, List, Button, Spinner } from './styles'
+import * as S from './styles'
 import usePokemonAPI from '../../hooks/usePokemonApi';
+import Spinner from '../../components/spinner/Spinner';
 
 const IndexPage = () => {
   const { pokemonList, loading, handleLoadMore } = usePokemonAPI();
@@ -19,18 +20,17 @@ const IndexPage = () => {
   return (
     <>
       <Header />
-      <Title>Pokemon List</Title>
+      <S.Title>Pokemon List</S.Title>
       {showModal && selectedPokemon && (
         <Modal onClose={() => setShowModal(false)} pokemon={selectedPokemon} />
       )}
-      <List>
+      <S.List>
         {pokemonList.map((pokemon: Pokemon, index: number) => (
           <Card key={pokemon.name} pokemon={pokemon} index={index} onClick={() => handleCardClick(pokemon)} />
         ))}
-      </List>
-      {loading && <Spinner />}
+      </S.List>
       {pokemonList.length > 0 && (
-        <Button onClick={handleLoadMore}>Load more Pokémon</Button>
+        <S.Button onClick={handleLoadMore}>Load more Pokémon {loading && <Spinner size={10} borderWidth={4} color="blue" />}</S.Button>
       )}
     </>
   );

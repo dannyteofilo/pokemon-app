@@ -6,12 +6,13 @@ const usePokemonAPI = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?offset=12&limit=12"
+        "https://pokeapi.co/api/v2/pokemon?offset=0&limit=12"
       );
       setPokemonList(response.data.results);
       setNextPageUrl(response.data.next);
@@ -28,10 +29,12 @@ const usePokemonAPI = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nextPageUrl]);
 
   const handleLoadMore = async () => {
-    if (!nextPageUrl || loading) return;
+    setIsFirstLoad(false);
+    if (!nextPageUrl || loading || isFirstLoad) return;
     setLoading(true);
     const response = await axios.get(nextPageUrl);
     setPokemonList([...pokemonList, ...response.data.results]);
