@@ -12,6 +12,7 @@ export const Button = styled.button`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  margin-bottom: 2rem;
   padding: 12px 24px;
   font-size: 16px;
   color: #fff;
@@ -40,19 +41,3 @@ export const List = styled.ul`
   margin: 0 -10px;
 `;
 
-export const Spinner = styled.div`
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #09f;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-  animation: spin 1s linear infinite;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;

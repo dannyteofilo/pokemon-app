@@ -1,22 +1,17 @@
-import styled from 'styled-components';
-
-const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f2f2f2;
-  height: 100px;
-`;
-
-const Logo = styled.img`
-  height: 50px;
-`;
+import * as S from './style'
+import logo from './logo-pokemon.png'
+import Image from 'next/image'
 
 const Header = () => {
   return (
-    <HeaderContainer>
-      <Logo src="../../public/logo-pokemon.png" alt="Pokemon API" />
-    </HeaderContainer>
+    <S.HeaderContainer>      
+       <Image
+        src="/logo-pokemon.png"
+        alt="My Image"
+        width={150}
+        height={100}
+      />
+    </S.HeaderContainer>
   );
 };
 

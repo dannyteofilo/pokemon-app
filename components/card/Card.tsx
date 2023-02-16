@@ -1,26 +1,26 @@
 
 import { Pokemon } from '../../interfaces/pokemon';
-import { CardContainer, Image, CardNumber } from './style';
+import * as S from './style';
 
 interface CardProps {
     pokemon: Pokemon;
     index?: number;
-    onClick: ()=> void
+    onClick: () => void
 }
 
 const Card: React.FC<CardProps> = ({ pokemon, index, onClick }) => {
     const { name, url } = pokemon;
 
     return (
-        <CardContainer onClick={onClick}>
-            <Image
+        <S.CardContainer onClick={onClick}>
+            <S.Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${url.split('/')[6]}.png`}
                 alt={pokemon.name}
             />
-            <CardNumber>
+            <S.CardNumber>
                 {name.charAt(0).toUpperCase() + name.slice(1)} #{index}
-            </CardNumber>
-        </CardContainer>
+            </S.CardNumber>
+        </S.CardContainer>
     );
 };
 
